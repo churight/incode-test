@@ -39,9 +39,12 @@ export const moveCard = createAsyncThunk(
     async (data:{
         cardId:string;
         columnId: string;
-        position: string;
+        position: number;
     }) =>{
-        const res = await axios.patch(`http://localhost:4000/api/card/${data.cardId}/move`, data);
+        const res = await axios.patch(`http://localhost:4000/api/card/${data.cardId}/move`, {
+            columnId:data.columnId,
+            position: data.position
+        });
         return res.data;
     }
 );
