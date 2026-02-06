@@ -10,14 +10,15 @@ export const createCard = async ({boardId, columnId, title, description}: Create
 }
 
 export const updateCard = async (id: string, data: Partial<CreateCard>) =>{
-    const card = Card.findByIdAndUpdate(id, data, {new:true});
+    const card = await Card.findByIdAndUpdate(id, data, {new:true});
     if (!card) throw new Error ("Not found");
     return card;
 }
 
 export const DeleteCard = async (id: string) =>{
-    const card = Card.findByIdAndDelete(id);
+    const card = await Card.findByIdAndDelete(id);
     if (!card) throw new Error ("Not found");
+    return card;
 }
 
 export const MoveCard = async (id:string, newColumnId:string, newPosition:number)=>{

@@ -5,7 +5,8 @@ export const createCard = async (
     req: Request, res: Response, next: NextFunction
 ) =>{
     try{
-        const card = await cardService.createCard(req.body.name);
+        const { boardId, columnId, title, description } = req.body;
+        const card = await cardService.createCard({ boardId, columnId, title, description });
         res.status(201).json(card)
     }catch(error){
         next(error)
