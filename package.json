@@ -1,4 +1,29 @@
 {
+  "name": "incode-test-task",
+  "version": "1.0.0",
+  "description": "This project is a full-stack web application consisting of a backend API and a frontend client.",
+  "homepage": "https://github.com/churight/incode-test#readme",
+  "bugs": {
+    "url": "https://github.com/churight/incode-test/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/churight/incode-test.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:backend": "cd backend && npm run dev ",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "npm-run-all --parallel dev:backend dev:frontend",
+
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install": "npm-run-all --parallel install:backend install:frontend"
+  },
   "devDependencies": {
     "prettier": "3.8.1"
   }
