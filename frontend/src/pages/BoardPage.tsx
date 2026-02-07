@@ -15,8 +15,10 @@ export const BoardPage = () => {
   }, [hashId, dispatch]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <KanbanBoard />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100">
+      <div className="h-full">
+        <KanbanBoard />
+      </div>
     </div>
   );
 };

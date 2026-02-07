@@ -12,7 +12,7 @@ const BoardCard = ({ board }: Props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [isEditing, setIsEditing]= useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const [name, setName] = useState<string>(board.name);
 
   const handleDelete = async () => {
@@ -26,57 +26,79 @@ const BoardCard = ({ board }: Props) => {
       updateBoard({
         id: board._id,
         name,
-      })
+      }),
     );
 
     setIsEditing(false);
   };
 
   return (
-    <div className="bg-white p-5 rounded shadow hover:shadow-lg transition space-y-3">
+    <div className="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-gray-300 transition-all duration-200 overflow-hidden">
       {isEditing ? (
-        <>
+        <div className="p-5 space-y-3">
           <input
-            className="border p-2 rounded w-full"
+            autoFocus
+            className="w-full border-2 border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-lg px-3 py-2 text-sm font-medium outline-none transition-all duration-200"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleUpdate();
+              if (e.key === "Escape") setIsEditing(false);
+            }}
           />
 
           <div className="flex gap-2">
             <button
               onClick={handleUpdate}
-              className="bg-blue-600 text-white px-3 py-1 rounded text-sm"
+              disabled={!name.trim()}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors duration-150 shadow-sm"
             >
               Save
             </button>
             <button
-              onClick={() => setIsEditing(false)}
-              className="text-sm text-gray-500"
+              onClick={() => {
+                setName(board.name);
+                setIsEditing(false);
+              }}
+              className="flex-1 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 px-4 py-2 rounded-lg transition-colors duration-150"
             >
               Cancel
             </button>
           </div>
-        </>
+        </div>
       ) : (
         <>
-          <div onClick={() => navigate(`/board/${board.hashId}`)}>
-            <h2 className="text-lg font-semibold cursor-pointer">
+          <div
+            onClick={() => navigate(`/board/${board.hashId}`)}
+            className="p-5 cursor-pointer hover:bg-gray-50 transition-colors duration-150"
+          >
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-150">
               {board.name}
             </h2>
-            <p className="text-sm text-gray-500">{board.hashId}</p>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500 font-mono bg-gray-100 px-2 py-1 rounded">
+                {board.hashId}
+              </span>
+            </div>
           </div>
 
-          <div className="flex gap-3 text-sm">
+          <div className="px-5 pb-4 pt-2 border-t border-gray-100 bg-gray-50 flex gap-2">
             <button
-              onClick={() => setIsEditing(true)}
-              className="text-blue-600"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsEditing(true);
+              }}
+              className="flex-1 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 py-2 px-3 rounded-lg transition-colors duration-150"
             >
               Edit
             </button>
 
             <button
-              onClick={handleDelete}
-              className="text-red-600"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete();
+              }}
+              className="flex-1 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 py-2 px-3 rounded-lg transition-colors duration-150"
             >
               Delete
             </button>

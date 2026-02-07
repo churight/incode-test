@@ -1,20 +1,19 @@
-import { ZodObject } from 'zod';
-import { Request, Response, NextFunction } from 'express';
+import { ZodObject } from "zod";
+import { Request, Response, NextFunction } from "express";
 
 export const validate =
-  (schema: ZodObject) =>
-  (req: Request, res: Response, next: NextFunction) => {
+  (schema: ZodObject) => (req: Request, res: Response, next: NextFunction) => {
     try {
       schema.parse({
         body: req.body,
         params: req.params,
-        query: req.query
+        query: req.query,
       });
       next();
     } catch (error: any) {
       res.status(400).json({
-        message: 'Validation error',
-        errors: error.errors
+        message: "Validation error",
+        errors: error.errors,
       });
     }
   };

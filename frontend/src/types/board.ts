@@ -1,13 +1,13 @@
 import type { Column } from "./column";
 
-export type Board ={
-    _id: string;
-    hashId: string;
-    name: string;
-}
+export type Board = {
+  _id: string;
+  hashId: string;
+  name: string;
+};
 
 export type BoardState = {
-    board: null | {
+  board: null | {
     _id: string;
     name: string;
     hashId: string;
@@ -16,4 +16,4 @@ export type BoardState = {
   loading: boolean;
   error: string | null;
   boardList: Board[];
-}
+};

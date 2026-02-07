@@ -1,12 +1,12 @@
 import { model, Schema } from "mongoose";
 
 export const CardSchema = new Schema({
-  boardId:{type: Schema.Types.ObjectId, ref: 'Board', required: true},
-  columnId: {type: Schema.Types.ObjectId, ref: 'Column', required: true},
-  title: {type: String, required: true},
+  boardId: { type: Schema.Types.ObjectId, ref: "Board", required: true },
+  columnId: { type: Schema.Types.ObjectId, ref: "Column", required: true },
+  title: { type: String, required: true },
   description: String,
-  position: {type: Number, required:true}
+  position: { type: Number, required: true },
 });
 
-const Card = model('Card', CardSchema);
+const Card = model("Card", CardSchema);
 export default Card;

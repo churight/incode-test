@@ -10,7 +10,7 @@ function App() {
   //const board = useAppSelector(state => state.board.board);
 
   return (
-     <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<BoardsPage />} />
         <Route path="/board/:hashId" element={<BoardPage />} />
