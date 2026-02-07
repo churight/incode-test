@@ -15,4 +15,5 @@ export type BoardState = {
   columns: Column[];
   loading: boolean;
   error: string | null;
+  boardList: Board[];
 }

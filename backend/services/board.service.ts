@@ -35,6 +35,15 @@ export const getBoardByHash = async (hashId: string) => {
   };
 };
 
+export const getAllBoards = async () =>{
+  const boards = await Board.find();
+  if(!boards) throw new Error("No boards found");
+
+  return{
+    boards
+  }
+}
+
 export const updateBoard = async (id: string, data: { name?: string }) => {
   const board = await Board.findByIdAndUpdate(id, data, { new: true });
   if (!board) throw new Error('Board not found');

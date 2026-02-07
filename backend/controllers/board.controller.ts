@@ -28,6 +28,18 @@ export const getBoardByHash = async (
   }
 };
 
+export const getAllBoards = async(
+  req: Request,
+  res:Response,
+) =>{
+  try{
+    const data = await boardService.getAllBoards();
+    res.json(data);
+  }catch(err){
+    res.status(404).json({message: "No Boards founf"})
+  }
+}
+
 export const updateBoard = async (
   req: Request,
   res: Response,
