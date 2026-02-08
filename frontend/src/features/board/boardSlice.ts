@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { BoardState } from "../../types/board";
 
+const API = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 export const fetchBoardByHash = createAsyncThunk(
   "board/fetchByHash",
   async (hashId: string) => {
-    const res = await axios.get(`http://localhost:4000/api/boards/${hashId}`);
+    const res = await axios.get(`${API}/api/boards/${hashId}`);
     return res.data;
   },
 );
@@ -13,7 +15,7 @@ export const fetchBoardByHash = createAsyncThunk(
 export const createBoard = createAsyncThunk(
   "board/create",
   async (data: { name: string }) => {
-    const res = await axios.post("http://localhost:4000/api/boards", data);
+    const res = await axios.post(`${API}/api/boards`, data);
     return res.data;
   },
 );
@@ -21,7 +23,7 @@ export const createBoard = createAsyncThunk(
 export const deleteBoard = createAsyncThunk(
   "board/delete",
   async (id: string) => {
-    await axios.delete(`http://localhost:4000/api/boards/${id}`);
+    await axios.delete(`${API}/api/boards/${id}`);
     return id;
   },
 );
@@ -30,7 +32,7 @@ export const updateBoard = createAsyncThunk(
   "board/update",
   async (data: { id: string; name: string }) => {
     const res = await axios.put(
-      `http://localhost:4000/api/boards/${data.id}`,
+      `${API}/api/boards/${data.id}`,
       data,
     );
     return res.data;
@@ -38,7 +40,7 @@ export const updateBoard = createAsyncThunk(
 );
 
 export const getAllBoards = createAsyncThunk("board/getAll", async () => {
-  const res = await axios.get(`http://localhost:4000/api/boards/`);
+  const res = await axios.get(`${API}/api/boards/`);
   return res.data;
 });
 

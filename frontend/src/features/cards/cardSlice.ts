@@ -55,7 +55,7 @@ const cardSlice = createSlice({
           state.items[idx] = action.payload;
         }
       })
-      .addCase(moveCard.rejected, (state, action) => {
+      .addCase(moveCard.rejected, (_state, action) => {
         console.error("Move failed:", action.error);
       });
   },
