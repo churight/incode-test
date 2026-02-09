@@ -11,4 +11,12 @@ app.use(express.json());
 app.use("/api/boards", boardRoutes);
 app.use("/api/card", cardRoutes);
 
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', message: 'Backend is running' });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy', timestamp: new Date() });
+});
+
 export default app;
