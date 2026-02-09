@@ -7,7 +7,7 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-ARG VITE_API_URL
+ARG VITE_API_URL=https://incode-test-backend-production.up.railway.app
 ENV VITE_API_URL=$VITE_API_URL
 
 RUN npm run build
