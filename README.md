@@ -1,4 +1,4 @@
-# Incode Fullstack Test Task
+# Kanban ToDo
 
 This project is a full-stack web application consisting of a backend API and a frontend client.
 
